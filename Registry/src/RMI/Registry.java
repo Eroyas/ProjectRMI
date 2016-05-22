@@ -1,4 +1,4 @@
-package iRMI;
+package RMI;
 
 import java.io.Serializable;
 import java.nio.channels.AlreadyBoundException;

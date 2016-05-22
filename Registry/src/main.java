@@ -1,5 +1,5 @@
 import iRMI.IRMIRegistry;
-import iRMI.RMIRegistry;
+import RMI.RMIRegistry;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
