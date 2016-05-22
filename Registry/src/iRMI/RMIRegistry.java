@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.nio.channels.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.server.RMIClientSocketFactory;
+import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
@@ -15,9 +17,16 @@ public class RMIRegistry extends UnicastRemoteObject implements IRMIRegistry {
 
     private Registry registry;
 
-    protected RMIRegistry() throws RemoteException {
+    public RMIRegistry() throws RemoteException {
         super();
-        registry = new Registry();
+    }
+
+    public RMIRegistry(int port) throws RemoteException {
+        super(port);
+    }
+
+    public RMIRegistry(int port, RMIClientSocketFactory csf, RMIServerSocketFactory ssf) throws RemoteException {
+        super(port, csf, ssf);
     }
 
     @Override
