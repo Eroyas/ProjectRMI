@@ -11,45 +11,46 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class RMIRegistry extends UnicastRemoteObject implements IRMIRegistry {
 
-    
+    private Registry registry;
 
     protected RMIRegistry() throws RemoteException {
         super();
+        registry = new Registry();
     }
 
     @Override
     public void bind(String key, Serializable obj) throws RemoteException, AlreadyBoundException {
-
+        registry.bind(key, obj);
     }
 
     @Override
     public void rebind(String key, Serializable obj) throws RemoteException {
-
+        registry.rebind(key, obj);
     }
 
     @Override
     public void unbind(String key) throws RemoteException, NotBoundException {
-
+        registry.unbind(key);
     }
 
     @Override
     public Serializable lookup(String key) throws RemoteException, NotBoundException {
-        return null;
+        return registry.lookup(key);
     }
 
     @Override
     public String[] list() throws RemoteException {
-        return new String[0];
+        return registry.list();
     }
 
     @Override
     public String[] getLastList(int x) throws RemoteException {
-        return new String[0];
+        return registry.getLastList(x);
     }
 
     @Override
     public Serializable[] getLastBind(int x) throws RemoteException {
-        return new Serializable[0];
+        return registry.getLastBind(x);
     }
 
 }
