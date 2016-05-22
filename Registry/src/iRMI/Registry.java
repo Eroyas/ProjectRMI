@@ -10,6 +10,8 @@ import java.util.Map;
 
 /**
  * Created by Eroyas on 22/05/16.
+ *
+ * Javadocs complete in file IRMIRegistry
  */
 public class Registry {
 

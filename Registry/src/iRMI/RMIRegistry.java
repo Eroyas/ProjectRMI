@@ -8,6 +8,8 @@ import java.rmi.server.UnicastRemoteObject;
 
 /**
  * Created by Eroyas on 22/05/16.
+ *
+ * Javadocs complete in file IRMIRegistry
  */
 public class RMIRegistry extends UnicastRemoteObject implements IRMIRegistry {
 
