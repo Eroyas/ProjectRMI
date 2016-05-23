@@ -50,7 +50,7 @@ public class Registry {
     }
 
     public String[] list() {
-        return (String[]) orderRegistry.toArray();
+        return orderRegistry.toArray(new String[orderRegistry.size()]);
     }
 
     public String[] getLastList(int x) {
