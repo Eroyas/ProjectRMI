@@ -13,7 +13,7 @@ public class ClientLibrary {
     public static void main(String[] args) {
         try {
 
-            Registry registre =  LocateRegistry.getRegistry(4000);
+            Registry registre =  LocateRegistry.getRegistry(8080);
 
             IRMIRegistry rmi = (IRMIRegistry) registre.lookup("MyRMI");
             ILibrary service = (ILibrary) rmi.lookup("Library");

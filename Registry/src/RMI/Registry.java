@@ -29,7 +29,7 @@ public class Registry {
         if (orderRegistry.contains(key)){
             registry.replace(key, obj);
             orderRegistry.remove(key);
-        }else
+        } else
             registry.put(key, obj);
         orderRegistry.add(key);
     }
