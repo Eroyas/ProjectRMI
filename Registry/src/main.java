@@ -28,7 +28,7 @@ public class main {
         } catch (RemoteException | MalformedURLException e) {
             e.printStackTrace();
         }catch(AccessControlException e ){
-            System.out.println("Sorry, we can't acces to localhost:1234 (rmiregistry). \nHave you configured your Security file ?");
+            System.out.println("Sorry, we can't acces to localhost:8080 (rmiregistry). \nHave you configured your Security file ?");
         }
 
     }
