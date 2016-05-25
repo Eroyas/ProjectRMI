@@ -44,7 +44,7 @@ public class ClientJMS implements MessageListener {
         receiveSession = connect.createSession(false,javax.jms.Session.AUTO_ACKNOWLEDGE);
         Queue queue = (Queue) context.lookup("dynamicQueues/" + queueName);
 
-        System.out.println("Nom de la queue " + queue.getQueueName());
+        System.out.println("Nom de la queue : " + queue.getQueueName());
 
         javax.jms.MessageConsumer qr1 = receiveSession.createConsumer(queue,"typeMess = 'important'");
         qr1.setMessageListener(this);
@@ -62,4 +62,13 @@ public class ClientJMS implements MessageListener {
             e.printStackTrace();
         }
     }
+
+    public static void main(String[] args) {
+        try {
+            new ClientJMS();
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

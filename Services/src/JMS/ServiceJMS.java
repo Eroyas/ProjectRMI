@@ -9,14 +9,18 @@ import java.util.Hashtable;
 /**
  * Created by corentinhardy on 25/05/2016.
  */
-public class ServiceJMS implements MessageListener{
-    javax.jms.Queue queue;
+public class ServiceJMS implements MessageListener {
+
     javax.jms.MessageProducer sender;
     javax.jms.Session sendSession;
     javax.jms.Connection connect;
     InitialContext context = null;
 
-    public ServiceJMS(){
+    public ServiceJMS() throws JMSException {
+        configurer();
+    }
+
+    private void configurer() throws JMSException {
         try {
             Hashtable properties = new Hashtable();
             properties.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
@@ -27,36 +31,58 @@ public class ServiceJMS implements MessageListener{
             ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
             connect = factory.createConnection();
 
-            sendSession = connect.createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
-            queue = (Queue) context.lookup("dynamicQueues/queueExo2");
-            sender = sendSession.createProducer(queue);
+            configurerProducteur("firstqueues");
 
             connect.start();
-
-            System.out.println("TEST_F");
-        } catch (javax.jms.JMSException e){
+        } catch (javax.jms.JMSException e) {
             e.printStackTrace();
         } catch (NamingException e) {
-            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        this.produire();
+    }
+
+    private void configurerProducteur(String queueName) throws JMSException, NamingException {
+        sendSession = connect.createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
+        Queue queue = (Queue) context.lookup("dynamicQueues/" + queueName);
+        sender = sendSession.createProducer(queue);
+    }
+
+    private void produire() throws JMSException {
+        for (int i = 1; i <= 10; i++) {
+
+            MapMessage mess = sendSession.createMapMessage();
+            mess.setInt("num",i);
+            mess.setString("nom",i+"-");
+
+            if (i % 2 == 0) {
+                mess.setStringProperty("typeMess", "important");
+            }
+
+            if (i==1) {
+                mess.setIntProperty("numMess",1);
+            }
+
+            sender.send(mess);
+        }
+    }
+
+    @Override
+    public void onMessage(Message message) {
+        try {
+            System.out.print("Recu un message de la queue: "+((MapMessage)message).getString("nom"));
+            System.out.println(((MapMessage)message).getString("num"));
+        } catch (JMSException e) {
             e.printStackTrace();
         }
     }
 
     public static  void main(String[] args) {
-        ServiceJMS sjms = new ServiceJMS();
-    }
-
-    @Override
-    public void onMessage(Message message) {
-        // Methode permettant au consommateur de consommer effectivement chaque msg recu
-        // via la queue
         try {
-            System.out.print("Recu un message de la queue: "+((MapMessage)message).getString("nom"));
-            System.out.println(((MapMessage)message).getString("num"));
+            new ServiceJMS();
         } catch (JMSException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
 }
