@@ -91,11 +91,24 @@ public class Pizza extends UnicastRemoteObject implements IPizza, Serializable{
         commandes = new HashMap<>();
     }
 
+    private boolean pizzaExist(String nomPizza){
+        for (String pizza : PIZZAS)
+            if(pizza.equals(nomPizza))
+                return true;
+        return false;
+    }
+
     public boolean commandePizza(String nomPizza, String nomReserve){
+        if (! pizzaExist(nomPizza))
+            return false;
         if(commandes.containsKey(nomReserve))
             return false;
         commandes.put(nomReserve, nomPizza);
         ThreadPizza cook = new ThreadPizza(nomPizza, nomReserve, 3000);
         return true;
+    }
+
+    public String[] list(){
+        return PIZZAS;
     }
 }
