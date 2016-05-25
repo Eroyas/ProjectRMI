@@ -73,7 +73,7 @@ public class Pizza extends UnicastRemoteObject implements IPizza, Serializable{
             }finally {
                 try {
                     MapMessage mess = sendSession.createMapMessage();
-                    mess.setString("state", "ready");
+                    mess.setString("state", "done");
                     mess.setStringProperty("typeMess", "important");
                     sender.send(mess);
                     commandes.remove(name);
@@ -105,6 +105,7 @@ public class Pizza extends UnicastRemoteObject implements IPizza, Serializable{
             return false;
         commandes.put(nomReserve, nomPizza);
         ThreadPizza cook = new ThreadPizza(nomPizza, nomReserve, 3000);
+        cook.run();
         return true;
     }
 
