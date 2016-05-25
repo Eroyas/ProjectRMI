@@ -46,7 +46,7 @@ public class Pizza extends UnicastRemoteObject implements IPizza, Serializable {
                 connect = factory.createConnection();
 
                 sendSession = connect.createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
-                Queue queue = (Queue) context.lookup("Pizza/" + name);
+                Queue queue = (Queue) context.lookup("dynamicQueues/" + name);
                 sender = sendSession.createProducer(queue);
 
                 connect.start();

@@ -38,7 +38,7 @@ public class ClientPizza {
             service.commandePizza(cmd, client);
 
             jms = new ClientJMS();
-            jms.configurerConsommateur("Pizza/" + client);
+            jms.configurerConsommateur("dynamicQueues/" + client);
         } catch (Exception e) {
             e.printStackTrace();
         }
