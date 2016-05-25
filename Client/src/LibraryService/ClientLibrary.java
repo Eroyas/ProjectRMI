@@ -18,15 +18,17 @@ public class ClientLibrary {
             IRMIRegistry rmi = (IRMIRegistry) registre.lookup("MyRMI");
             ILibrary service = (ILibrary) rmi.lookup("Library");
 
-            System.out.println("Ajouter un livre");
-            System.out.println("Ajouter du livre : Un Livre");
-            service.addBook("Un Livre", "Le premier livre de notre bibliotheque !");
-            System.out.println("Ajouter du livre : Le livre sur les services");
-            service.addBook("Le livre sur les services", "Le livre qui explique les services");
+            System.out.println("#### Demo ajouter un livre ####");
 
-            System.out.println("Chercher un livre");
-            String livre = service.getBook("Un Livre");
-            System.out.println("Livre trouvé : " + livre);
+            System.out.println("On Ajoute le livre : Niourk");
+            service.addBook("Niourk", "Un enfant sauvage allant vers NiourK");
+            System.out.println("On Ajoute le livre : Xipehuz");
+            service.addBook("Xipehuz", "Un livre de Rosny Aine");
+
+            System.out.println("#### Demo chercher un livre ####");
+
+            String livre = service.getBook("Xipehuz");
+            System.out.println("Vous venez de chercher le livre Xipehuz : " + livre);
         } catch (Exception e) {
             e.printStackTrace();
         }
