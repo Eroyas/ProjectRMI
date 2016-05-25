@@ -10,7 +10,7 @@ import java.rmi.Naming;
  */
 public class ServicePizza {
 
-    public static void main(String[] args) {
+    public static void servicePizza() {
         if (System.getSecurityManager() == null) {
             System.out.println("Generating a new security manager ...");
             System.setSecurityManager(new SecurityManager());
@@ -18,9 +18,10 @@ public class ServicePizza {
         }
 
         try {
-            IRMIRegistry rmi = (IRMIRegistry)  Naming.lookup("rmi://localhost:8080/MyRMI");
+            IRMIRegistry rmi = (IRMIRegistry) Naming.lookup("rmi://localhost:8080/MyRMI");
             Pizza service = new Pizza();
             rmi.rebind("Pizza", service);
+            System.out.println("Service Pizza is working");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -18,12 +18,13 @@ public class main {
                 System.out.println("We activate Security Manager !");
                 System.setSecurityManager(new SecurityManager());
             }
-            // we verify that security manager works
+
             System.getSecurityManager().checkAccept("localhost", 8080);
 
             IRMIRegistry rmi = new RMIRegistry();
 
             Naming.rebind("rmi://localhost:8080/MyRMI", rmi);
+
             System.out.println("RMI configured !");
         } catch (RemoteException | MalformedURLException e) {
             e.printStackTrace();

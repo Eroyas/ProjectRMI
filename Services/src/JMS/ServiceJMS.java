@@ -42,7 +42,7 @@ public class ServiceJMS {
 
         this.produire();
 
-        System.out.println("Ok for Service JMS");
+        System.out.println("Service JMS is working");
     }
 
     private void configurerProducteur(String queueName) throws JMSException, NamingException {
@@ -73,7 +73,6 @@ public class ServiceJMS {
     public static void serviceJMS() {
         try {
             new ServiceJMS();
-            System.out.println("serviceJMS is working");
         } catch (JMSException e) {
             e.printStackTrace();
         }

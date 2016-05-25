@@ -1,5 +1,6 @@
 import JMS.ClientJMS;
 import LibraryService.ClientLibrary;
+import PizzaService.ClientPizza;
 
 import java.util.Scanner;
 
@@ -9,19 +10,21 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args){
         System.out.println("Quel client voulez vous lancez ? ");
-        System.out.println("entrez 0 pour le client Library.");
-        System.out.println("entrez 1 pour le client JMS.");
-        System.out.println("entrez 2 pour le client Pizza.");
+        System.out.println("Entrez 1 pour le client RMI Library.");
+        System.out.println("Entrez 2 pour le client JMS.");
+        System.out.println("Entrez 3 pour le client RMI Pizza avec JMS.");
+
         Scanner scanner = new Scanner(System.in);
-        switch(scanner.nextInt()){
-            case 0:
+
+        switch(scanner.nextInt()) {
+            case 1:
                 ClientLibrary.clientLibrary();
                 break;
-            case 1:
+            case 2:
                 ClientJMS.clientJMS();
                 break;
-            case 2:
-                //ClientPizza.clientPizza();
+            case 3:
+                ClientPizza.clientPizza();
                 break;
             default:
                 System.out.println("Désolé, l'entré n'est pas valide.");

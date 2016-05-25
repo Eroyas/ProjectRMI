@@ -1,35 +1,18 @@
 package PizzaService;
 
 import JMS.ClientJMS;
-import LibraryService.ILibrary;
 import iRMI.IRMIRegistry;
 
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.List;
 
 /**
  * Created by Eroyas on 25/05/16.
  */
-public class ClientPizza  extends UnicastRemoteObject {
+public class ClientPizza {
 
-    protected ClientPizza() throws RemoteException {
-        super();
-
-    }
-
-    public static void main(String[] args) {
-
-        if (System.getSecurityManager() == null) {
-            System.out.println("Generating a new security manager ...");
-            System.setSecurityManager(new SecurityManager());
-            System.out.println("Done !");
-        }
-
+    public static void clientPizza() {
         try {
-            ClientPizza pizza = new ClientPizza();
             ClientJMS jms;
 
             Registry registre =  LocateRegistry.getRegistry(8080);
@@ -59,6 +42,5 @@ public class ClientPizza  extends UnicastRemoteObject {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

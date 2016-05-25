@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by corentinhardy on 25/05/2016.
  */
-public class Pizza extends UnicastRemoteObject implements IPizza, Serializable{
+public class Pizza extends UnicastRemoteObject implements IPizza, Serializable {
 
     private class ThreadPizza extends Thread {
 
@@ -70,7 +70,7 @@ public class Pizza extends UnicastRemoteObject implements IPizza, Serializable{
                 System.out.println("Pizza is ready");
             } catch (InterruptedException e) {
                 System.out.println("Oh, a golden pizza !");
-            }finally {
+            } finally {
                 try {
                     MapMessage mess = sendSession.createMapMessage();
                     mess.setString("state", "done");

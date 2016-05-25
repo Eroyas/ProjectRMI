@@ -1,11 +1,12 @@
 import JMS.ServiceJMS;
 import LibraryService.ServiceLibrary;
+import PizzaService.ServicePizza;
 
 /**
  * Created by corentinhardy on 25/05/2016.
  */
 public class main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         try {
             ServiceLibrary.serviceLibrary();
         }catch (Exception e){
@@ -19,7 +20,7 @@ public class main {
             e.printStackTrace();
         }
         try {
-            //ServicePizza.servicePizza();
+            ServicePizza.servicePizza();
         }catch (Exception e){
             System.err.println("There was a problem in ServicePizza");
             e.printStackTrace();

@@ -20,7 +20,7 @@ public class ServiceLibrary{
             IRMIRegistry rmi = (IRMIRegistry) Naming.lookup("rmi://localhost:8080/MyRMI");
             Library service = new Library();
             rmi.rebind("Library", service);
-            System.out.println("serviceLibrary is working");
+            System.out.println("Service Library is working");
         } catch (Exception e) {
             e.printStackTrace();
         }
