@@ -42,7 +42,7 @@ public class ClientJMS implements MessageListener {
         System.out.println("Ok for Client JMS");
     }
 
-    private void configurerConsommateur(String queueName) throws JMSException, NamingException {
+    public void configurerConsommateur(String queueName) throws JMSException, NamingException {
         receiveSession = connect.createSession(false,javax.jms.Session.AUTO_ACKNOWLEDGE);
         Queue queue = (Queue) context.lookup("dynamicQueues/" + queueName);
 

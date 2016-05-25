@@ -27,24 +27,3 @@ public class ServiceLibrary{
     }
 
 }
-
-/*
-try {
-        Hashtable properties = new Hashtable();
-        properties.put(Context.INITIAL_CONTEXT_FACTORY,
-        "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
-        properties.put(Context.PROVIDER_URL, "tcp://localhost:61616");
-
-        InitialContext context = new InitialContext(properties);
-        javax.jms.ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
-        javax.jms.Connection  connect = factory.createConnection();
-
-        javax.jms.Session sendSession = connect.createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
-        javax.jms.Queue queue = (Queue) context.lookup("dynamicQueues/queueExo2");
-        javax.jms.MessageProducer sender = sendSession.createProducer(queue);
-
-        System.out.println("TEST_F");
-        }catch(Exception e){
-        e.printStackTrace();
-        }
-        */
