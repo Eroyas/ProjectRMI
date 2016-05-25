@@ -38,6 +38,8 @@ public class ClientJMS implements MessageListener {
         } catch (NamingException e) {
             e.printStackTrace();
         }
+
+        System.out.println("Ok for Client JMS");
     }
 
     private void configurerConsommateur(String queueName) throws JMSException, NamingException {

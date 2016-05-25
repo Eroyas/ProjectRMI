@@ -9,7 +9,7 @@ import java.util.Hashtable;
 /**
  * Created by corentinhardy on 25/05/2016.
  */
-public class ServiceJMS implements MessageListener {
+public class ServiceJMS {
 
     javax.jms.MessageProducer sender;
     javax.jms.Session sendSession;
@@ -41,6 +41,8 @@ public class ServiceJMS implements MessageListener {
         }
 
         this.produire();
+
+        System.out.println("Ok for Service JMS");
     }
 
     private void configurerProducteur(String queueName) throws JMSException, NamingException {
@@ -65,16 +67,6 @@ public class ServiceJMS implements MessageListener {
             }
 
             sender.send(mess);
-        }
-    }
-
-    @Override
-    public void onMessage(Message message) {
-        try {
-            System.out.print("Recu un message de la queue: "+((MapMessage)message).getString("nom"));
-            System.out.println(((MapMessage)message).getString("num"));
-        } catch (JMSException e) {
-            e.printStackTrace();
         }
     }
 
