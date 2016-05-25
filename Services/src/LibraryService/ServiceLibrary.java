@@ -9,7 +9,7 @@ import java.rmi.Naming;
  */
 public class ServiceLibrary{
 
-    public static void main(String[] args) {
+    public static void serviceLibrary() {
         if (System.getSecurityManager() == null) {
             System.out.println("Generating a new security manager ...");
             System.setSecurityManager(new SecurityManager());
@@ -20,7 +20,7 @@ public class ServiceLibrary{
             IRMIRegistry rmi = (IRMIRegistry) Naming.lookup("rmi://localhost:8080/MyRMI");
             Library service = new Library();
             rmi.rebind("Library", service);
-            System.out.println("IT's WORKING ! ");
+            System.out.println("serviceLibrary is working");
         } catch (Exception e) {
             e.printStackTrace();
         }

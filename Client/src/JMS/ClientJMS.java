@@ -65,7 +65,7 @@ public class ClientJMS implements MessageListener {
         }
     }
 
-    public static void main(String[] args) {
+    public static void clientJMS() {
         try {
             new ClientJMS();
         } catch (JMSException e) {
